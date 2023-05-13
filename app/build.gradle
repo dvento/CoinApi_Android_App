@@ -21,7 +21,7 @@ android {
             useSupportLibrary true
         }
 
-        // API KEY
+        // Place your API KEY in local.properties file, named as "API_KEY"
         Properties properties = new Properties()
         properties.load(project.rootProject.file('local.properties').newDataInputStream())
         buildConfigField 'String', 'API_KEY', properties.getProperty('API_KEY')

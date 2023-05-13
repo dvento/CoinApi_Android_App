@@ -16,16 +16,22 @@ data class AssetItem(
     val isFavorite: Boolean = false
 )
 
-fun Asset.toAssetItem(priceEur: Double?) = AssetItem(
-    assetId = assetId ?: "",
-    name = name ?: "",
-    iconUrl = ApiConstants.ASSET_ICON_URL.format(idIcon),
-    priceEur = priceEur ?: 0.0,
-    priceUsd = priceUsd ?: 0.0,
-    volume1dayUsd = volume1dayUsd ?: 0.0,
-    volume1hrsUsd = volume1hrsUsd ?: 0.0,
-    volume1mthUsd = volume1mthUsd ?: 0.0
-)
+fun Asset.toAssetItem(priceEur: Double?): AssetItem {
+    val cleanedIconId = idIcon?.replace("-", "") ?: ""
+
+    val iconUrl = ApiConstants.ASSET_ICON_URL.format(cleanedIconId)
+
+    return AssetItem(
+        assetId = assetId ?: "",
+        name = name ?: "",
+        iconUrl = iconUrl,
+        priceEur = priceEur ?: 0.0,
+        priceUsd = priceUsd ?: 0.0,
+        volume1dayUsd = volume1dayUsd ?: 0.0,
+        volume1hrsUsd = volume1hrsUsd ?: 0.0,
+        volume1mthUsd = volume1mthUsd ?: 0.0
+    )
+}
 
 fun AssetEntity.toAssetItem() = AssetItem(
     assetId = assetId,

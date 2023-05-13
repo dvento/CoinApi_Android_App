@@ -8,7 +8,7 @@ import com.danvento.coinapi.domain.GetAssetsUseCase
 import com.danvento.coinapi.domain.model.AssetItem
 import kotlinx.coroutines.launch
 
-class MainActivityViewModel(
+class AssetListViewModel(
     private val getAssetsUseCase: GetAssetsUseCase
 ) : ViewModel() {
 

@@ -10,6 +10,7 @@ object RetrofitModule {
 
     private const val BASE_URL = "https://rest.coinapi.io/v1/"
     private const val BASE_URL_SANDBOX = "https://rest-sandbox.coinapi.io/v1/"
+    // Place your API KEY in local.properties file, named as "API_KEY"
     private const val API_KEY = BuildConfig.API_KEY
 
     private val httpClient = OkHttpClient.Builder()
@@ -22,7 +23,7 @@ object RetrofitModule {
         .build()
 
     fun getRetrofit() = Retrofit.Builder()
-        .baseUrl(BASE_URL_SANDBOX)
+        .baseUrl(BASE_URL)
         .client(httpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()

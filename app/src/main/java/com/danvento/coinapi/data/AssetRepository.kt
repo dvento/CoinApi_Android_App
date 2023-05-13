@@ -37,25 +37,25 @@ class AssetRepository(
                 asset.idIcon = iconsResult.data!!.find { it.assetId == asset.assetId }?.url
             }*/
 
-            // TODO: add explanation on the use of eurRate
             // get eur price based on asset list
             eurRate = result.data!!.find { it.assetId == "EUR" }?.priceUsd ?: -1.0
 
-            result.data.map { it.toAssetItem(/*getEurPrice(it.assetId!!, it.priceUsd)*/ it.priceUsd?.div(
+            result.data.map { it.toAssetItem(it.priceUsd?.div(
                 eurRate
             )) }
 
         }
     }
 
+    // Calculate Eur price based on USD asset price
     private suspend fun getEurPrice(assetId: String, assetPrice: Double?): Double? {
         // We don't need to check for the exchange rate if price is not available
-        if (assetPrice == null) return null
+        assetPrice ?: return null
 
         val result = apiService.getExchangeRate(assetId, "EUR")
         return if (result is ApiResponse.Error) {
             // If there are too many requests, we use the less accurate exchange rate
-            // We should inform the user that the price is doesn't have the best accuracy
+            // TODO: We should inform the user that the price is doesn't have the best accuracy
 
             assetPrice / eurRate
 

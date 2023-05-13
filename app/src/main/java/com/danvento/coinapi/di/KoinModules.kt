@@ -5,7 +5,8 @@ import com.danvento.coinapi.core.RoomModule
 import com.danvento.coinapi.data.AssetRepository
 import com.danvento.coinapi.data.network.ApiService
 import com.danvento.coinapi.domain.GetAssetsUseCase
-import com.danvento.coinapi.ui.viewmodel.MainActivityViewModel
+import com.danvento.coinapi.ui.viewmodel.AssetDetailViewModel
+import com.danvento.coinapi.ui.viewmodel.AssetListViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -20,7 +21,8 @@ val applicationModule = module {
 }
 
 val viewModelModule = module {
-    viewModel { MainActivityViewModel(get()) }
+    viewModel { AssetListViewModel(get()) }
+    viewModel { AssetDetailViewModel() }
 }
 
 val useCaseModule = module {
