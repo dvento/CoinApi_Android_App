@@ -1,5 +1,6 @@
 package com.danvento.coinapi.core
 
+import com.danvento.coinapi.BuildConfig
 import com.danvento.coinapi.data.network.CoinApiClient
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -9,7 +10,7 @@ object RetrofitModule {
 
     private const val BASE_URL = "https://rest.coinapi.io/v1/"
     private const val BASE_URL_SANDBOX = "https://rest-sandbox.coinapi.io/v1/"
-    private const val API_KEY = "YOUR API KEY HERE"
+    private const val API_KEY = BuildConfig.API_KEY
 
     private val httpClient = OkHttpClient.Builder()
         .addInterceptor { chain ->
